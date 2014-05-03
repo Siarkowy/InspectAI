@@ -1,0 +1,9 @@
+## Interface: 20400
+## Title: InspectAI
+## Notes: Creature EventAI inspector for in-game debugging.
+## Author: Siarkowy <siarkowy@siarkowy.net>
+## X-License: BSD 2-Clause
+## X-Website: https://github.com/Siarkowy/InspectAI
+## Version: 1.0a
+
+InspectAI.lua
