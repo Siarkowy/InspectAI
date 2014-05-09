@@ -30,8 +30,7 @@ local function tm(d)
     d = tonumber(d)
 
     if d >= 60000 then return format(d % 60000 == 0 and "%dm" or "%.1fm", d/60000)
-    elseif d >= 1000 then return format(d % 1000 == 0 and "%ds" or "%.1fs", d/1000)
-    else return format("%dms", d) end
+    else return format(d % 1000 == 0 and "%ds" or "%.1fs", d/1000) end
 end
 
 local cast_flags = setmetatable({
@@ -106,7 +105,7 @@ local actions = {
     "ThreatAll %d%%", -- 14
     function(a,b,c) return format("QuestEvent quest %d target %s", a, cast_targets[tonumber(b)]) end, -- 15
     function(a,b,c) return format("CastEvent quest %d spell %s <%d> target %s", a, GetSpellLink(b) or UNKNOWN, b, cast_targets[tonumber(c)]) end, -- 16
-    function(a,b,c) return format("SetUnitField no %d value %d target %s", a, b, cast_targets[tonumber(c)]) end, -- 17
+    function(a,b,c) return format("SetUnitFieldFlag %d to %d for %s", a, b, cast_targets[tonumber(c)]) end, -- 17
     function(a,b,c) return format("SetUnitFlag flags %d target %s", a, cast_targets[tonumber(b)]) end, -- 18
     function(a,b,c) return format("RemoveUnitFlag flags %d target %s", a, cast_targets[tonumber(b)]) end, -- 19
     "AutoAttack state %d", -- 20
@@ -150,7 +149,7 @@ local actions = {
 }
 
 function EAI:Printf(...)
-    DEFAULT_CHAT_FRAME:AddMessage("[EAI] " .. format(...))
+    DEFAULT_CHAT_FRAME:AddMessage("[EAI] " .. format(...), 0, 1, 1)
 end
 
 function EAI:GetFormattedEvent(id, ...)
