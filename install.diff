@@ -1,0 +1,28 @@
+diff --git a/src/game/CreatureEventAI.cpp b/src/game/CreatureEventAI.cpp
+--- a/src/game/CreatureEventAI.cpp
++++ b/src/game/CreatureEventAI.cpp
+@@ -377,6 +377,24 @@
+     if (pHolder.Event.event_chance <= rnd % 100)
+         return false;
+ 
++    //EAI Inspector
++    {
++        char dbg[256];
++
++        snprintf(dbg, 256, "EAI\tE:%u:%u:%u:%u:%u:%u:%u",
++            pHolder.Event.event_id, Phase, pHolder.Event.event_type,
++            pHolder.Event.raw.param1, pHolder.Event.raw.param2,
++            pHolder.Event.raw.param3, pHolder.Event.raw.param4);
++
++        for (uint32 j = 0; j < MAX_ACTIONS; ++j)
++            snprintf(dbg, 256, "%s A:%u:%d:%d:%d", dbg, pHolder.Event.action[j].type,
++                pHolder.Event.action[j].raw.param1,
++                pHolder.Event.action[j].raw.param2,
++                pHolder.Event.action[j].raw.param3);
++
++        me->Yell(dbg, LANG_ADDON, 0);
++    }
++
+     //Process actions
+     for (uint32 j = 0; j < MAX_ACTIONS; j++)
+         ProcessAction(pHolder.Event.action[j], rnd, pHolder.Event.event_id, pActionInvoker);

@@ -4,6 +4,6 @@
 ## Author: Siarkowy <siarkowy@siarkowy.net>
 ## X-License: BSD 2-Clause
 ## X-Website: https://github.com/Siarkowy/InspectAI
-## Version: 1.0a
+## Version: 1.0
 
 InspectAI.lua
